@@ -1,0 +1,83 @@
+{
+  "type": "record",
+  "name": "EndpointData",
+  "namespace": "com.pelion.kafka.connect",
+  "fields": [
+    {
+      "name": "ep",
+      "type": "string"
+    },
+    {
+      "name": "original_ep",
+      "type": "string"
+    },
+    {
+      "name": "ept",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "q",
+      "type": "boolean"
+    },
+    {
+      "name": "resources",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ResourceData",
+          "fields": [
+            {
+              "name": "path",
+              "type": "string"
+            },
+            {
+              "name": "if",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "rt",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "ct",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "obs",
+              "type": [
+                "null",
+                "boolean"
+              ],
+              "default": null
+            }
+          ],
+          "connect.version": 1,
+          "connect.name": "com.pelion.kafka.connect.ResourceData"
+        }
+      }
+    },
+    {
+      "name": "timestamp",
+      "type": "long"
+    }
+  ],
+  "connect.version": 1,
+  "connect.name": "com.pelion.kafka.connect.EndpointData"
+}

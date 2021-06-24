@@ -1,0 +1,18 @@
+{
+  "name": "file-pt-example",
+  "version": "0.1.0",
+  "description": "A protocol translation example that models a building heating control system",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pelion Ltd.",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.8.21",
+    "es6-promisify": "^6.0.0",
+    "json-rpc-ws": "^5.0.0",
+    "repl.history": "^0.1.4"
+  }
+}

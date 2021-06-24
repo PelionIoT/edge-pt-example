@@ -1,0 +1,84 @@
+{
+  "type": "record",
+  "name": "NotificationData",
+  "namespace": "com.pelion.kafka.connect",
+  "fields": [
+    {
+      "name": "ep",
+      "type": "string"
+    },
+    {
+      "name": "path",
+      "type": "string"
+    },
+    {
+      "name": "ct",
+      "type": "string"
+    },
+    {
+      "name": "payload_b64",
+      "type": "string"
+    },
+    {
+      "name": "payload",
+      "type": {
+        "type": "record",
+        "name": "PayloadData",
+        "fields": [
+          {
+            "name": "s",
+            "type": [
+              "null",
+              "string"
+            ],
+            "default": null
+          },
+          {
+            "name": "l",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "d",
+            "type": [
+              "null",
+              "double"
+            ],
+            "default": null
+          },
+          {
+            "name": "b",
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "default": null
+          }
+        ],
+        "connect.version": 1,
+        "connect.name": "com.pelion.kafka.connect.PayloadData"
+      }
+    },
+    {
+      "name": "max_age",
+      "type": "int"
+    },
+    {
+      "name": "uid",
+      "type": "string"
+    },
+    {
+      "name": "timestamp",
+      "type": "long"
+    },
+    {
+      "name": "original_ep",
+      "type": "string"
+    }
+  ],
+  "connect.version": 1,
+  "connect.name": "com.pelion.kafka.connect.NotificationData"
+}

@@ -1,0 +1,34 @@
+[
+    {
+        "name": "reception",
+        "sensors": {
+            "thermostat": {
+                "name": "reception-thermostat",
+                "temp": 26.3,
+                "setpoint": 22.1
+            },
+            "blower": {
+                "name": "reception-blower",
+                "fan": 2,
+                "heat": false,
+                "cool": false
+            }
+        }
+    },
+    {
+        "name": "hall",
+        "sensors": {
+            "thermostat": {
+                "name": "hall-thermostat",
+                "temp": 19.1,
+                "setpoint": 14.5
+            },
+            "blower": {
+                "name": "hall-blower",
+                "fan": 1,
+                "heat": false,
+                "cool": false
+            }
+        }
+    }
+]

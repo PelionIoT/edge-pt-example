@@ -1,0 +1,45 @@
+{
+  "type": "record",
+  "name": "AsyncIDResponseData",
+  "namespace": "com.pelion.kafka.connect",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "int"
+    },
+    {
+      "name": "error",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "payload",
+      "type": "string"
+    },
+    {
+      "name": "ct",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "max_age",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    }
+  ],
+  "connect.version": 1,
+  "connect.name": "com.pelion.kafka.connect.AsyncIDResponseData"
+}
