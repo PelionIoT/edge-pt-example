@@ -4,12 +4,12 @@
         "sensors": {
             "thermostat": {
                 "name": "reception-thermostat",
-                "temp": 26.3,
-                "setpoint": 22.1
+                "temp": 25.4,
+                "setpoint": 26.5
             },
             "blower": {
                 "name": "reception-blower",
-                "fan": 2,
+                "fan": 1,
                 "heat": false,
                 "cool": false
             }
@@ -20,8 +20,8 @@
         "sensors": {
             "thermostat": {
                 "name": "hall-thermostat",
-                "temp": 19.1,
-                "setpoint": 14.5
+                "temp": 18.2,
+                "setpoint": 19.1
             },
             "blower": {
                 "name": "hall-blower",
