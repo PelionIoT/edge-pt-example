@@ -24,16 +24,22 @@ function page(screen, index) {
     var nameWidget = blessed.text({ content: room.name, align: "right" });
     screen.append(nameWidget);
 
-    pointWidget = grid.set(0, 2, 4, 2, contrib.donut,
+    pointWidget = grid.set(0, 2, 2, 3, contrib.lcd,
         {
-            label: 'Thermostat',
-            radius: 16,
-            arcWidth: 4,
-            yPadding: 2,
-            data: [{ label: 'Set Point', percent: room.sensors.thermostat.setpoint }]
-        });
+            label: 'Setpoint',
+            segmentWidth: 0.06,
+            segmentInterval: 0.11,
+            strokeWidth: 0.5,
+            elements: 5,
+            display: 3210,
+            elementSpacing: 4,
+            elementPadding: 2,
+            color: 'yellow'
+        }
+    );        
+    pointWidget.setDisplay(room.sensors.thermostat.setpoint);
 
-    ambientWidget = grid.set(0, 4, 2, 3, contrib.lcd,
+    ambientWidget = grid.set(2, 2, 2, 3, contrib.lcd,
         {
             label: 'Ambient',
             segmentWidth: 0.06,
@@ -48,7 +54,7 @@ function page(screen, index) {
     );
     ambientWidget.setDisplay(room.sensors.thermostat.temp);
 
-    fanWidget = grid.set(0, 8, 2, 3, contrib.lcd,
+    fanWidget = grid.set(0, 6, 2, 3, contrib.lcd,
         {
             label: 'Fan Speed',
             segmentWidth: 0.06,
@@ -63,7 +69,7 @@ function page(screen, index) {
     );
     fanWidget.setDisplay((room.sensors.blower.fan == 0? "OFF": room.sensors.blower.fan));
 
-    heatWidget = grid.set(2, 8, 2, 3, contrib.lcd,
+    heatWidget = grid.set(2, 6, 2, 3, contrib.lcd,
         {
             label: 'Heat',
             segmentWidth: 0.06,
@@ -78,7 +84,7 @@ function page(screen, index) {
     );
     heatWidget.setDisplay(room.sensors.blower.heat === true ? "ON" : "OFF");
 
-    coolWidget = grid.set(4, 8, 2, 3, contrib.lcd,
+    coolWidget = grid.set(4, 6, 2, 3, contrib.lcd,
         {
             label: 'Cool',
             segmentWidth: 0.06,
@@ -93,7 +99,7 @@ function page(screen, index) {
     );
     coolWidget.setDisplay(room.sensors.blower.cool === true ? "ON" : "OFF");
 
-    var box = blessed.box({ content: 'use right-left arrows to switch rooms, \'w\',\'s\' to adjust thermostat set point, \'p\',\'l\' to adjust ambient temperature', top: '80%', left: '12%' })
+    var box = blessed.box({ content: 'use right-left arrows to switch rooms, \n\'w\',\'s\' to adjust thermostat set point, \n\'p\',\'l\' to adjust ambient temperature', top: '80%', left: '12%' })
     screen.append(box)
 }
 
@@ -103,22 +109,26 @@ function calculate() {
     room.sensors.blower.heat = false;
     room.sensors.blower.cool = false;
 
-    var diff;
+    var diff = 0;
 
     if (room.sensors.thermostat.temp < room.sensors.thermostat.setpoint) {
-        room.sensors.blower.heat = true;
         diff = room.sensors.thermostat.setpoint - room.sensors.thermostat.temp;
-    } else {
-        room.sensors.blower.cool = true;
+        room.sensors.blower.heat = true;
+    } else if (room.sensors.thermostat.temp > room.sensors.thermostat.setpoint) {
         diff = room.sensors.thermostat.temp - room.sensors.thermostat.setpoint;
-    }
+        if (diff >1)
+            // only turn the cool function on if we're more than 1 degree too warm
+            room.sensors.blower.cool = true;     
+    } // else temp == setpoint so stick with the calculate() defaults of everything off
 
-    if (diff < 3)
-        room.sensors.blower.fan = 1;
-    else if (diff < 5)
-        room.sensors.blower.fan = 2;
-    else
-        room.sensors.blower.fan = 3;
+    if (diff != 0) {
+        if (diff < 3)
+            room.sensors.blower.fan = 1;
+        else if (diff < 5)
+            room.sensors.blower.fan = 2;
+        else
+            room.sensors.blower.fan = 3;
+    }
 
     // update db
     fs.writeFileSync('device-values.json', JSON.stringify(data, null /* null transformer */, 4 /* spacing level 4*/));
@@ -139,11 +149,12 @@ screen.key(['escape', 'q', 'C-c'], function (ch, key) {
 
 screen.key(['w', 's'], function (ch, key) {
     if (key.name === "w")
-        room.sensors.thermostat.setpoint += 1;
+        room.sensors.thermostat.setpoint = ((room.sensors.thermostat.setpoint * 10) + (0.1 * 10)) / 10  // cater for js float precision
     else
-        room.sensors.thermostat.setpoint -= 1;
+        room.sensors.thermostat.setpoint = ((room.sensors.thermostat.setpoint * 10) - (0.1 * 10)) / 10 // cater for js float precision
 
-    pointWidget.setData([{ label: 'Set Point', percent: room.sensors.thermostat.setpoint.toFixed(1) }]);
+    // update ui
+    pointWidget.setDisplay(room.sensors.thermostat.setpoint);
     calculate();
 });
 
