@@ -62,7 +62,7 @@ sudo node file-pt-example-ui.js
 
 You will be presented with the following screen:
 
-![edge ui](https://i.ibb.co/VTvpG7n/pelion-edge-pt-ui.png "edge ui")
+![edge ui](https://i.ibb.co/jkBqPN2/pelion-edge-pt-ui-current.png "edge ui")
 
 > Use the keyboard shortcuts displayed on screen to toggle the monitoring room, the ambient temperature and the thermostat set point.
 
