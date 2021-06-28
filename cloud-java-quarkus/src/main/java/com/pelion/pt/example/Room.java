@@ -19,7 +19,7 @@ public class Room {
   Thermostat thermostat = new Thermostat();
   Blower blower = new Blower();
 
-  static final Timer TIMER = new Timer();
+  final Timer timer = new Timer();
   TimerTask failureTimerTask;
 
   long heatcoolChangeTimestamp;
@@ -31,7 +31,7 @@ public class Room {
       if (failureTimerTask == null) {
         heatcoolChangeTimestamp = System.currentTimeMillis();   // mark current time
         failureTimerTask = createFailureTimerTask();
-        TIMER.schedule(failureTimerTask, 20 * 1000L /*20 secs*/);
+        timer.schedule(failureTimerTask, 20 * 1000L /*20 secs*/);
         LOGGER.infof("['%s'] blower state change (%s), started failure timer..", name, blower);
       }
     }
@@ -46,7 +46,7 @@ public class Room {
       long diff = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - heatcoolChangeTimestamp);
       if (diff >= 10 && diff < 20) {
         LOGGER.infof("['%s'] ambient change occurred after '%d secs', sending 'WARNING' message..", name, diff);
-        // TODO send warning
+        // TODO send warning (e.g through a Kafka message)
       }
     }
   }
@@ -72,8 +72,7 @@ public class Room {
       public void run() {
         LOGGER.infof("['%s'] timeout occurred and no ambient change occurred, sending 'ERROR' message..", name);
         failureTimerTask = null; // reset
-
-        // TODO send error
+        // TODO send error (e.g through a Kafka message)
       }
     };
   }
