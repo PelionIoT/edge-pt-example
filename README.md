@@ -33,7 +33,8 @@ First let's start the main prototocol translation unit:
 sudo node file-pt-example.js
 ```
 
-The program will start and register to `'Edge Core'` all the devices described in the `‘device-values.json’` file:
+The program will start and register to `'Edge Core'` all the devices described in the `‘device-values.json’` file.
+
 
 ```
 ~/edge$ sudo node file-pt-example.js 
@@ -47,6 +48,11 @@ processing hall-blower
 [EdgePTExample] Devices registered 4
 [EdgePTExample] Kill this protocol translator with Ctrl+C
 ```
+
+Those devices would then be shown as connected to the gateway in Pelion Device Management portal:
+
+![edge-pt-portal](https://i.ibb.co/cNVbgKd/pelion-edge-pt-portal-gateway.png "edge-pt-portal")
+
 
 On a separate terminal start the user interface part to visualize the devices and control their state:
 
