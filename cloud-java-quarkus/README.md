@@ -1,6 +1,8 @@
 # cloud-java-quarkus
 
-This example complements the [edge protocol example](https://github.com/PelionIoT/edge-pt-example) by providing an application that connects to Pelion Device Management and listen for all state changes happening at the building heating control system and applies some sample analytics to determine whether the building is operating efficiently. 
+![edge-pt-example-java-quarkus](https://i.ibb.co/gy0RTsB/java-quarkus.png "edge-pt-example-java-quarkus")
+
+This example complements the [edge protocol example](https://github.com/PelionIoT/edge-pt-example) by providing an application that connects to Pelion Device Management and listens for all state changes happening at the building heating control system and applies some sample analytics to determine whether the building is operating efficiently. 
 
 In particular, it applies the following rules:
 
@@ -8,14 +10,26 @@ In particular, it applies the following rules:
 
 - If blower heat or cool is on but temperature change occurs after 20 seconds then we issue a system failure.
 
-- If set point is changed more than 4 times in 20 seconds then we issue an optimisation warning​.
+- If thermostat set-point is changed more than 4 times in 20 seconds then we issue an optimisation warning​.
 
 
 ## Getting Started
 
-The project is written in Java with the [Quarkus framework](https://quarkus.io/)  and connects to a [Kafka broker](https://www.google.com/search?client=firefox-b-d&q=apache+kafka) where notifications coming from Pelion Device Management are stored. Please visit our ["Connector-for-Apache-Kafka"](https://github.com/PelionIoT/Connector-for-Apache-Kafka/tree/master/demo-example) documentation page for installation of both a Kafka broker and the connector plugin to Pelion.
+The project is written in Java with the [Quarkus framework](https://quarkus.io/)  and connects to a [Kafka broker](https://www.google.com/search?client=firefox-b-d&q=apache+kafka) where notifications coming from Pelion Device Management are stored. Please visit our ['Connector-for-Apache-Kafka'](https://github.com/PelionIoT/Connector-for-Apache-Kafka/tree/master/demo-example) documentation page for installation instructions of both a Kafka broker and the connector plugin to Pelion.
+
+Once your Kafka installation is up, you can download the provided [binary artifact](https://github.com/PelionIoT/edge-pt-example/releases/download/0.1/edge-pt-example-cloud-app) to bootstrap the example. Simply download to your machine where your Kafka broker is running and execute it with:
+
+```
+./edge-pt-example-cloud-app
+```
+
+The beauty of Quarkus native executables of Java Code :)
+
+Once the application is running, change the thermostat and ambient temperature values accordingly and notice how the rules discussed above are applied and notification messages being printed in the console.
 
 > If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+
+
 
 ## Running the application in dev mode
 
@@ -40,7 +54,7 @@ If you want to build an _über-jar_, execute the following command:
 ./mvnw package -Dquarkus.package.type=uber-jar
 ```
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+The application is now runnable using `java -jar target/cloud-java-quarkus-1.0.0-SNAPSHOT-runner.jar`.
 
 ## Creating a native executable
 
