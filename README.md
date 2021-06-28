@@ -48,7 +48,7 @@ processing hall-blower
 [EdgePTExample] Kill this protocol translator with Ctrl+C
 ```
 
-On a separate terminal start the user interface part to visualize the devices:
+On a separate terminal start the user interface part to visualize the devices and control their state:
 
 ```
 sudo node file-pt-example-ui.js
@@ -58,4 +58,18 @@ You will be presented with the following screen:
 
 ![edge ui](https://i.ibb.co/VTvpG7n/pelion-edge-pt-ui.png "edge ui")
 
-> Use the keyboard shortcuts displayed on screen to change the state of the devices.
+> Use the keyboard shortcuts displayed on screen to toggle the monitoring room, the ambient temperature and the thermostat set point.
+
+The UI script monitors when you toggle the ambient temperature and thermostat set-point and upon detecting a change, it updates the device LwM2M resources in Pelion Device Management. In particular, it applies the following rules:
+
+- If **current temperature < thermostat-set-point** then we turn ON fan+heater​
+- If **current temperature = thermostat-set-point** then we turn OFF fan+heater+a/c
+- If **current temperature > thermostat-set-point** by 2 degrees then we turn ON fan
+- If **current temperature > thermostat-set-point** by 3 degrees then we turn the A/C ON
+- If **current temperature to thermostat-set-point** less than 3 degrees difference then we set the fan speed 1​
+- If **current temperature to thermostat-set-point** larger than 3 degrees then we set the fan speed 2​
+- If **current temperature to thermostat-set-point** larger than 5 degrees then we set the fan speed 3​
+
+​
+
+
