@@ -71,12 +71,12 @@ public class EdgeNotificationsConsumer {
     } else if (sensorName.equals(Room.THERMOSTAT)) {
       if (path.equals("/3303/0/5700")) { // temp
         r.thermostat.temp = nd.getPayload().getD();
+        r.processThermostatChange();
       } else if (path.equals("/3308/0/5900")) {
         r.thermostat.point = nd.getPayload().getD();
         r.thermostat.ticks++;
         r.processTicks();
       }
-      r.processThermostatChange();
     }
   }
 }
