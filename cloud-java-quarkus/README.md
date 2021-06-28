@@ -1,8 +1,21 @@
 # cloud-java-quarkus
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This example complements the [edge protocol example](https://github.com/PelionIoT/edge-pt-example) by providing an application that connects to Pelion Device Management and listen for all state changes happening at the building heating control system and applies some sample analytics to determine whether the building is operating efficiently. 
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+In particular, it applies the following rules:
+
+- If blower heat or cool is on but temperature change occurs after 10s, then we issue a service warning.​
+
+- If blower heat or cool is on but temperature change occurs after 20 seconds then we issue a system failure.
+
+- If set point is changed more than 4 times in 20 seconds then we issue an optimisation warning​.
+
+
+## Getting Started
+
+The project is written in Java with the [Quarkus framework](https://quarkus.io/)  and connects to a [Kafka broker](https://www.google.com/search?client=firefox-b-d&q=apache+kafka) where notifications coming from Pelion Device Management are stored. Please visit our ["Connector-for-Apache-Kafka"](https://github.com/PelionIoT/Connector-for-Apache-Kafka/tree/master/demo-example) documentation page for installation of both a Kafka broker and the connector plugin to Pelion.
+
+> If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
 ## Running the application in dev mode
 
