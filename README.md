@@ -66,7 +66,9 @@ You will be presented with the following screen:
 
 > Use the keyboard shortcuts displayed on screen to toggle the monitoring room, the ambient temperature and the thermostat set point.
 
-The UI script monitors when you toggle the ambient temperature and thermostat set-point and upon detecting a change, it updates the device LwM2M resources in Pelion Device Management. In particular, it applies the following rules:
+The UI script monitors when you toggle the ambient temperature and thermostat set-point and upon detecting a change, it updates the device LwM2M resources in Pelion Device Management.
+
+In particular, it applies the following rules:
 
 - If **current temperature < thermostat-set-point** then we turn ON fan+heater​
 - If **current temperature = thermostat-set-point** then we turn OFF fan+heater+a/c
@@ -75,6 +77,11 @@ The UI script monitors when you toggle the ambient temperature and thermostat se
 - If **current temperature to thermostat-set-point** less than 3 degrees difference then we set the fan speed 1​
 - If **current temperature to thermostat-set-point** larger than 3 degrees then we set the fan speed 2​
 - If **current temperature to thermostat-set-point** larger than 5 degrees then we set the fan speed 3​
+
+## Analytics
+To complement this protocol-translator example running on the edge gatway, we've also written a cloud analytic part where an application connected to Pelion Device Management monitors the changes and applies analytics to determine whether the building heating control system is operating efficiently. Please visit ['cloud-java-quarkus/README.MD'](https://github.com/PelionIoT/edge-pt-example/blob/master/cloud-java-quarkus/README.md) for more information.
+
+
 
 ​
 
