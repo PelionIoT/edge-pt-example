@@ -23,11 +23,12 @@ Once your Kafka installation is up, you can download the provided [binary artifa
 ./edge-pt-example-cloud-app
 ```
 
-The beauty of Quarkus native executables of Java Code :)
+> The beauty of Quarkus native executables of Java Code :) 
+
+>If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+
 
 Once the application is running, change the thermostat and ambient temperature values accordingly and notice how the rules discussed above are applied and notification messages being printed in the console.
-
-> If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
 
 

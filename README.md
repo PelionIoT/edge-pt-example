@@ -2,7 +2,7 @@
 
 A demo utilizing [Protocol Translation](https://developer.pelion.com/docs/device-management-edge/latest/protocol-translator/index.html) feature of [Pelion Edge](https://developer.pelion.com/docs/device-management-edge/latest/introduction/index.html) to model a building heating control system. 
 
-![edge-pt-example](https://i.ibb.co/NT9zkkc/pelion-edge-pt-diagram.png "edge-pt-example")
+![edge-pt-example](https://i.ibb.co/18M710K/pelion-edge-pt-diagram.png "edge-pt-example")
 
 
 ## Getting Started
