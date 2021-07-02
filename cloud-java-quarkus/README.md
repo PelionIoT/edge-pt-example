@@ -17,10 +17,10 @@ In particular, it applies the following rules:
 
 The project is written in Java with the [Quarkus framework](https://quarkus.io/)  and connects to a [Kafka broker](https://www.google.com/search?client=firefox-b-d&q=apache+kafka) where notifications coming from Pelion Device Management are stored. Please visit our ['Connector-for-Apache-Kafka'](https://github.com/PelionIoT/Connector-for-Apache-Kafka/tree/master/demo-example) documentation page for installation instructions of both a Kafka broker and the connector plugin to Pelion.
 
-Once your Kafka installation is up, you can download the provided [binary artifact](https://github.com/PelionIoT/edge-pt-example/releases/download/0.1/edge-pt-example-cloud-app) to bootstrap the example. Simply download to your machine where your Kafka broker is running and execute it with:
+Once your Kafka installation is up, you can download the provided [binary artifacts](https://github.com/PelionIoT/edge-pt-example/releases/tag/0.1) for your architecture (linux/mac) to bootstrap the example. Simply download the to your machine where your Kafka broker is running and execute it with:
 
 ```
-./edge-pt-example-cloud-app
+./edge-pt-example-cloud-app-bin-{linux or mac}
 ```
 
 > The beauty of Quarkus native executables of Java Code :) 
